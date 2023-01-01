@@ -1,2 +1,0 @@
-file data:request.FILES
-text data:request.POST

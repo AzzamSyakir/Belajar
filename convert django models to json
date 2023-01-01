@@ -1,7 +1,0 @@
-from (module).models import (name)
-
-class class_name(View):
-    def get(self, request):
-        variable_name = (From_models).objects.all()
-        data = list((From_models).objects.values_list())
-        return JsonResponse(data,safe=False)
