@@ -15,7 +15,7 @@ class User:
                         mydata=json.loads(request.body)
                         name = mydata.get("username")
                         model = user.objects.create(username=name)
-                        return JsonResponse({"status":"success"}, safe=False)
+                        return JsonResponse({"status":name}, safe=False)
                 except:
                         return JsonResponse({"error" : "error"}, safe=False)
 
@@ -23,7 +23,6 @@ class User:
         def getdata(request):
                 try:
                         data = request.GET
-                        mydata=json.loads(request.body)
                         model= user.objects.all()
                         return JsonResponse({"success":model}, safe=False)
                 except:
@@ -45,9 +44,9 @@ class User:
                 try:
                         request.POST
                         data=json.loads(request.body)
-                        name=data.get("username")
-                        model= user
-                        if name == model.username:
+                        name=data
+                        model = user.objects.filter('username')
+                        if name == model:
                                 return JsonResponse({"success":"login berhasil"}, safe=False)
                         else:
                                 return JsonResponse({"error":"name is wrong check again"}, safe=False)
