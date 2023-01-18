@@ -41,7 +41,7 @@ class User:
                                 return JsonResponse({"error":"name is wrong check again"}, safe=False)
 
                 except:
-                                return JsonResponse({"error":"error"}, safe=False);
+                                return JsonResponse({"error":"error"}, safe=False)
 
 class book:
         
@@ -62,7 +62,7 @@ class book:
                         data = request.POST
                         mydata=json.loads(request.body)
                         name = mydata.get("book name")
-                        model = book.objects.get(bookname=name)
+                        model = book.get(bookname=name)
                         model.delete()
                         return JsonResponse({"success":"delete book"}, safe=False)
                 except:
