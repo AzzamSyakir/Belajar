@@ -29,17 +29,6 @@ class User:
                         return JsonResponse({"error":"error"}, safe=False);
 
         @csrf_exempt
-        def addbook(request):
-                try:
-                        data = request.POST
-                        mydata=json.loads(request.body)
-                        name = mydata.get("book name")
-                        model = book.objects.create(bookname=name)
-                        return JsonResponse({"success":"add book"}, safe=False)
-                except:
-                        return JsonResponse({"error":"error"}, safe=False); 
-
-        @csrf_exempt
         def login(request):
                 try:
                         request.POST
@@ -53,3 +42,28 @@ class User:
 
                 except:
                                 return JsonResponse({"error":"error"}, safe=False);
+
+class book:
+        
+        @csrf_exempt
+        def addbook(request):
+                try:
+                        data = request.POST
+                        mydata=json.loads(request.body)
+                        name = mydata.get("book name")
+                        model = book.objects.create(bookname=name)
+                        return JsonResponse({"success":"add book"}, safe=False)
+                except:
+                        return JsonResponse({"error":"error"}, safe=False); 
+        
+        @csrf_exempt
+        def deletebook (request):
+                try:
+                        data = request.POST
+                        mydata=json.loads(request.body)
+                        name = mydata.get("book name")
+                        model = book.objects.get(bookname=name)
+                        model.delete()
+                        return JsonResponse({"success":"delete book"}, safe=False)
+                except:
+                        return JsonResponse({"error":"error"}, safe=False); 
