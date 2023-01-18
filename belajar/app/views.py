@@ -45,8 +45,8 @@ class User:
                         request.POST
                         data=json.loads(request.body)
                         name=data
-                        model = user.objects.filter('username')
-                        if name == model:
+                        model = user()
+                        if name == model.username:
                                 return JsonResponse({"success":"login berhasil"}, safe=False)
                         else:
                                 return JsonResponse({"error":"name is wrong check again"}, safe=False)
